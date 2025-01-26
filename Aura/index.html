@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Clock</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #fc6e44, #e26f7a, #f65695, #a551ff, #fbc2eb, #717ffc);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+      color: #fff;
+      font-family: 'Mattone 150', sans-serif; /* Ensure Mattone 150 is applied */
+    }
+
+    /* Ensure to load Mattone 150 font */
+    @font-face {
+        font-family: 'Mattone 150';
+        src: url('Widgets/Fonts/Mattone-150.otf') format('opentype'); /* Path to your font file */
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 50% 0%; }
+      50% { background-position: 50% 100%; }
+      100% { background-position: 50% 0%; }
+    }
+
+    .clock {
+      font-size: 5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      font-family: 'Mattone 150', sans-serif; /* Apply the same font here */
+    }
+  </style>
+</head>
+<body>
+  <div class="clock" id="clock"></div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+</body>
+</html>
